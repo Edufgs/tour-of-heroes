@@ -1,4 +1,32 @@
-<!-- uppercase = é  -->
-<h2>{{hero.name | uppercase}} Details</h2>
-<div><span>id: </span>{{hero.id}}</div>
-<div><span>name: </span>{{hero.name}}</div>
+<h2>My Heroes</h2>
+<ul class="heroes">
+	<!-- O *ngFor é a diretiva de repetidor do Angular. Ele repete o elemento host para cada elemento em uma lista. -->
+	<!-- 
+			<li> = É o elemento hospedeiro.
+			heroes = Contém a lista de heróis simulados da HeroesComponentclasse, a lista de heróis simulados.
+			hero =	Mantém o objeto herói atual para cada iteração na lista. 
+	-->
+	<li *ngFor="let hero of heroes">
+		<!-- (click) = diz ao Angular para ouvir o evento <button> do elemento click. 
+			Quando o usuário clica no <button>, o Angular executa o metodo "onSelect(hero)" mandando o hero para ele 
+			Esse metodo é definido no "heroes.component.ts"
+			-->
+			<!-- Quando o herói da linha atual é o mesmo que o selectedHero, 
+				o Angular adiciona a selectedclasse CSS. 
+				Quando os dois heróis são diferentes, Angular remove a classe. -->
+    <button type="button" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
+      <span class="badge">{{hero.id}}</span>
+      <span class="name">{{hero.name}}</span>
+    </button>
+  </li>
+</ul>
+
+<!-- *ngIf = Esta diretiva diz ao Angular para renderizar a seção somente quando o selectedHero é definido -->
+<div *ngIf="selectedHero">
+  <h2>{{selectedHero.name | uppercase}} Details</h2>
+  <div>id: {{selectedHero.id}}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
+  </div>
+</div>
