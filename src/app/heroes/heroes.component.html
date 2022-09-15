@@ -21,12 +21,5 @@
   </li>
 </ul>
 
-<!-- *ngIf = Esta diretiva diz ao Angular para renderizar a seção somente quando o selectedHero é definido -->
-<div *ngIf="selectedHero">
-  <h2>{{selectedHero.name | uppercase}} Details</h2>
-  <div>id: {{selectedHero.id}}</div>
-  <div>
-    <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
-  </div>
-</div>
+<!-- Faz a referencia com o componente hero-detail e ainda manda uma propriedade para esse componente  -->
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
