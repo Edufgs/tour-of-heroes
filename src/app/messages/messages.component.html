@@ -1,0 +1,9 @@
+<!-- Exibe a mensagem se houver -->
+<div *ngIf="messageService.messages.length">
+	<h2>Messages</h2>
+	<!-- Botão para limpar as mensagens -->
+  <button type="button" class="clear"
+		(click)="messageService.clear()">Clear messages</button>
+  	<!-- Apresenta a lista de mensagens em <div> elementos repetidos. -->
+  <div *ngFor='let message of messageService.messages'> {{message}} </div>
+</div>
